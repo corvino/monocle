@@ -1,0 +1,5 @@
+(defun org-to-html ()
+  (interactive)
+  (org-mode)
+  (org-html-export-as-html)
+  (princ (buffer-string)))

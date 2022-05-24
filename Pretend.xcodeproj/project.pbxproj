@@ -12,6 +12,7 @@
 		279034B728399C03006B9B35 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 279034B528399C03006B9B35 /* Document.xib */; };
 		279034B928399C04006B9B35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 279034B828399C04006B9B35 /* Assets.xcassets */; };
 		279034BC28399C04006B9B35 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 279034BA28399C04006B9B35 /* MainMenu.xib */; };
+		279034C7283C2CFC006B9B35 /* org-html.el in Resources */ = {isa = PBXBuildFile; fileRef = 279034C6283C2CFC006B9B35 /* org-html.el */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		279034BB28399C04006B9B35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		279034BD28399C04006B9B35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		279034BE28399C04006B9B35 /* Pretend.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pretend.entitlements; sourceTree = "<group>"; };
+		279034C6283C2CFC006B9B35 /* org-html.el */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "org-html.el"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				279034BA28399C04006B9B35 /* MainMenu.xib */,
 				279034BD28399C04006B9B35 /* Info.plist */,
 				279034BE28399C04006B9B35 /* Pretend.entitlements */,
+				279034C6283C2CFC006B9B35 /* org-html.el */,
 			);
 			path = Pretend;
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				279034B928399C04006B9B35 /* Assets.xcassets in Resources */,
+				279034C7283C2CFC006B9B35 /* org-html.el in Resources */,
 				279034B728399C03006B9B35 /* Document.xib in Resources */,
 				279034BC28399C04006B9B35 /* MainMenu.xib in Resources */,
 			);
@@ -283,11 +287,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Pretend/Pretend.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JQAU6W2U7L;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Pretend/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -300,6 +305,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.corvino.Pretend;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -311,11 +317,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Pretend/Pretend.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JQAU6W2U7L;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Pretend/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
