@@ -12,6 +12,8 @@ extension URL {
 
 class Document: NSDocument {
 
+    var watcher: Watcher?
+
     @IBOutlet weak var webView: WKWebView! {
         didSet {
             webView.loadHTMLString(html, baseURL: nil)
@@ -68,5 +70,33 @@ class Document: NSDocument {
 
     override func read(from url: URL, ofType typeName: String) throws {
         html = docToHTML(from: url)
+        if let path = url.filePath {
+            watcher = Watcher(path: path) { [weak self] in
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    self.html = self.docToHTML(from: url)
+                }
+            }
+        }
+    }
+}
+
+class Watcher {
+    private let eventSource: DispatchSourceFileSystemObject
+
+    init?(path: String, handler: @escaping () -> Void) {
+        guard FileManager.default.fileExists(atPath: path) else { return nil }
+
+        let desc = open(path, O_EVTONLY)
+        guard -1 != desc else { return nil }
+
+        eventSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: desc, eventMask: .write)
+        eventSource.setEventHandler(handler: handler)
+
+        eventSource.setCancelHandler {
+            close(desc)
+        }
+
+        eventSource.resume()
     }
 }
