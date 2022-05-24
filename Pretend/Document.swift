@@ -1,6 +1,7 @@
 // DELETE ME!
 
 import Cocoa
+import WebKit
 
 extension URL {
     var filePath: String? {
@@ -11,12 +12,19 @@ extension URL {
 
 class Document: NSDocument {
 
-    @IBOutlet var textView: NSTextView! {
+    @IBOutlet weak var webView: WKWebView! {
         didSet {
-            textView.string = message
+            webView.loadHTMLString(html, baseURL: nil)
         }
     }
-    var message: String = ""
+
+    var html: String = "" {
+        didSet {
+            if let webView = webView {
+                webView.loadHTMLString(html, baseURL: nil)
+            }
+        }
+    }
 
     override class var autosavesInPlace: Bool {
         return true
@@ -28,7 +36,13 @@ class Document: NSDocument {
         return NSNib.Name("Document")
     }
 
-    override func read(from url: URL, ofType typeName: String) throws {
+    @IBAction func reloadWebContent(_ sender: Any) {
+        if let url = fileURL {
+            html = docToHTML(from: url)
+        }
+    }
+
+    func docToHTML(from url: URL) -> String {
         let task = Process()
         let pipe = Pipe()
 
@@ -37,7 +51,7 @@ class Document: NSDocument {
 
         let input = url.filePath!
         let elFile = Bundle.main.bundlePath + "/Contents/Resources/org-html.el"
-         task.arguments = ["-l", elFile, "--batch", "--eval", "(org-to-html)", input]
+         task.arguments = [input, "-l", elFile, "--batch", "--eval", "(org-to-html)"]
          task.executableURL = URL(fileURLWithPath: "/usr/local/bin/emacs")
 
         task.standardInput = nil
@@ -45,15 +59,14 @@ class Document: NSDocument {
             try task.run()
         } catch {
             Swift.print(error)
-            message = error.localizedDescription
-            return
+            return ""
         }
 
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: .utf8)!
+        return String(data: data, encoding: .utf8)!
+    }
 
-        Swift.print("rendering \(url) of type: \(typeName)")
-        Swift.print(output)
-        message = "\(output)"
+    override func read(from url: URL, ofType typeName: String) throws {
+        html = docToHTML(from: url)
     }
 }

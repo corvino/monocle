@@ -2,12 +2,13 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Document" customModule="Pretend" customModuleProvider="target">
             <connections>
-                <outlet property="textView" destination="ObV-dt-vxz" id="9ES-nW-CkR"/>
+                <outlet property="webView" destination="swn-6B-pXD" id="beY-gx-XUG"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
         </customObject>
@@ -23,38 +24,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="507" height="413"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqn-7X-gmm">
+                    <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="swn-6B-pXD">
                         <rect key="frame" x="0.0" y="0.0" width="507" height="413"/>
-                        <clipView key="contentView" drawsBackground="NO" id="Bvp-xn-mPN">
-                            <rect key="frame" x="0.0" y="0.0" width="507" height="413"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="ObV-dt-vxz">
-                                    <rect key="frame" x="0.0" y="0.0" width="507" height="413"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="507" height="413"/>
-                                    <size key="maxSize" width="507" height="10000000"/>
-                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                </textView>
-                            </subviews>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="GK3-D5-NDO">
-                            <rect key="frame" x="-100" y="-100" width="240" height="16"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="CiI-JK-0kl">
-                            <rect key="frame" x="491" y="0.0" width="16" height="413"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
+                        <wkWebViewConfiguration key="configuration">
+                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                            <wkPreferences key="preferences"/>
+                        </wkWebViewConfiguration>
+                    </wkWebView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Qqn-7X-gmm" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" id="7vf-Ji-3KF"/>
-                    <constraint firstItem="Qqn-7X-gmm" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" id="8xY-mo-ZWh"/>
-                    <constraint firstAttribute="trailing" secondItem="Qqn-7X-gmm" secondAttribute="trailing" id="gOD-Fd-V5I"/>
-                    <constraint firstAttribute="bottom" secondItem="Qqn-7X-gmm" secondAttribute="bottom" id="lWc-Wr-d7y"/>
+                    <constraint firstItem="swn-6B-pXD" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" id="UCp-ki-Zx3"/>
+                    <constraint firstItem="swn-6B-pXD" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" id="X56-Vy-9ao"/>
+                    <constraint firstAttribute="trailing" secondItem="swn-6B-pXD" secondAttribute="trailing" id="aNs-Y9-XBv"/>
+                    <constraint firstAttribute="bottom" secondItem="swn-6B-pXD" secondAttribute="bottom" id="hgg-Uv-qZh"/>
                 </constraints>
             </view>
             <connections>
