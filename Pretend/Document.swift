@@ -1,5 +1,3 @@
-// DELETE ME!
-
 import Cocoa
 import WebKit
 

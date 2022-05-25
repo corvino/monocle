@@ -1,5 +1,3 @@
-// DELETE ME!
-
 import Cocoa
 
 @main
@@ -18,8 +16,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func application(_ sender: NSApplication, openFiles filenames: [String]) {
-        print("open \(filenames)")
+        for filename in filenames {
+            do {
+                let url =  URL(fileURLWithPath: filename)
+                let document = try Document(contentsOf: url, ofType: "org")
+                NSDocumentController.shared.addDocument(document)
+                document.makeWindowControllers()
+                document.showWindows()
+            } catch {
+                print("Error opening Org mode document.")
+                print(error)
+            }
+        }
     }
-
 }
-
