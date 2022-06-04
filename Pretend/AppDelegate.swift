@@ -19,10 +19,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         for filename in filenames {
             do {
                 let url =  URL(fileURLWithPath: filename)
-                let document = try Document(contentsOf: url, ofType: "org")
-                NSDocumentController.shared.addDocument(document)
-                document.makeWindowControllers()
-                document.showWindows()
+
+                if let document = NSDocumentController.shared.document(for: url) {
+                    document.showWindows()
+                } else {
+                    let document = try Document(contentsOf: url, ofType: "org")
+                    NSDocumentController.shared.addDocument(document)
+                    document.makeWindowControllers()
+                    document.showWindows()
+                }
             } catch {
                 print("Error opening Org mode document.")
                 print(error)
