@@ -14,6 +14,7 @@ class Document: NSDocument {
 
     @IBOutlet weak var webView: WKWebView! {
         didSet {
+            webView.configuration.preferences.setValue(true, forKey: "developerExtrasEnabled")
             webView.loadHTMLString(html, baseURL: nil)
         }
     }

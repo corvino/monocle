@@ -16,14 +16,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		279034AE28399C03006B9B35 /* Pretend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pretend.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		279034AE28399C03006B9B35 /* Monocle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monocle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		279034B128399C03006B9B35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		279034B328399C03006B9B35 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		279034B628399C03006B9B35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
 		279034B828399C04006B9B35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		279034BB28399C04006B9B35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		279034BD28399C04006B9B35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		279034BE28399C04006B9B35 /* Pretend.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pretend.entitlements; sourceTree = "<group>"; };
+		279034BE28399C04006B9B35 /* Monocle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Monocle.entitlements; sourceTree = "<group>"; };
 		279034C6283C2CFC006B9B35 /* org-html.el */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "org-html.el"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -41,7 +41,7 @@
 		279034A528399C03006B9B35 = {
 			isa = PBXGroup;
 			children = (
-				279034B028399C03006B9B35 /* Pretend */,
+				279034B028399C03006B9B35 /* Monocle */,
 				279034AF28399C03006B9B35 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,12 +49,12 @@
 		279034AF28399C03006B9B35 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				279034AE28399C03006B9B35 /* Pretend.app */,
+				279034AE28399C03006B9B35 /* Monocle.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		279034B028399C03006B9B35 /* Pretend */ = {
+		279034B028399C03006B9B35 /* Monocle */ = {
 			isa = PBXGroup;
 			children = (
 				279034B128399C03006B9B35 /* AppDelegate.swift */,
@@ -63,18 +63,18 @@
 				279034B828399C04006B9B35 /* Assets.xcassets */,
 				279034BA28399C04006B9B35 /* MainMenu.xib */,
 				279034BD28399C04006B9B35 /* Info.plist */,
-				279034BE28399C04006B9B35 /* Pretend.entitlements */,
+				279034BE28399C04006B9B35 /* Monocle.entitlements */,
 				279034C6283C2CFC006B9B35 /* org-html.el */,
 			);
-			path = Pretend;
+			path = Monocle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		279034AD28399C03006B9B35 /* Pretend */ = {
+		279034AD28399C03006B9B35 /* Monocle */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 279034C128399C04006B9B35 /* Build configuration list for PBXNativeTarget "Pretend" */;
+			buildConfigurationList = 279034C128399C04006B9B35 /* Build configuration list for PBXNativeTarget "Monocle" */;
 			buildPhases = (
 				279034AA28399C03006B9B35 /* Sources */,
 				279034AB28399C03006B9B35 /* Frameworks */,
@@ -84,9 +84,9 @@
 			);
 			dependencies = (
 			);
-			name = Pretend;
-			productName = Pretend;
-			productReference = 279034AE28399C03006B9B35 /* Pretend.app */;
+			name = Monocle;
+			productName = Monocle;
+			productReference = 279034AE28399C03006B9B35 /* Monocle.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -104,7 +104,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 279034A928399C03006B9B35 /* Build configuration list for PBXProject "Pretend" */;
+			buildConfigurationList = 279034A928399C03006B9B35 /* Build configuration list for PBXProject "Monocle" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -117,7 +117,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				279034AD28399C03006B9B35 /* Pretend */,
+				279034AD28399C03006B9B35 /* Monocle */,
 			);
 		};
 /* End PBXProject section */
@@ -286,7 +286,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Pretend/Pretend.entitlements;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = Monocle/Monocle.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -294,7 +295,7 @@
 				DEVELOPMENT_TEAM = JQAU6W2U7L;
 				ENABLE_HARDENED_RUNTIME = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Pretend/Info.plist;
+				INFOPLIST_FILE = Monocle/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -303,7 +304,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.corvino.Pretend;
+				PRODUCT_BUNDLE_IDENTIFIER = com.corvino.monocle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -316,7 +317,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Pretend/Pretend.entitlements;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = Monocle/Monocle.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -324,7 +326,7 @@
 				DEVELOPMENT_TEAM = JQAU6W2U7L;
 				ENABLE_HARDENED_RUNTIME = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Pretend/Info.plist;
+				INFOPLIST_FILE = Monocle/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -333,7 +335,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.corvino.Pretend;
+				PRODUCT_BUNDLE_IDENTIFIER = com.corvino.monocle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -343,7 +345,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		279034A928399C03006B9B35 /* Build configuration list for PBXProject "Pretend" */ = {
+		279034A928399C03006B9B35 /* Build configuration list for PBXProject "Monocle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				279034BF28399C04006B9B35 /* Debug */,
@@ -352,7 +354,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		279034C128399C04006B9B35 /* Build configuration list for PBXNativeTarget "Pretend" */ = {
+		279034C128399C04006B9B35 /* Build configuration list for PBXNativeTarget "Monocle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				279034C228399C04006B9B35 /* Debug */,
