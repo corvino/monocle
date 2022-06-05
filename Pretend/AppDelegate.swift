@@ -15,6 +15,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
 
+    func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
+        false
+    }
+
     func application(_ sender: NSApplication, openFiles filenames: [String]) {
         for filename in filenames {
             do {
