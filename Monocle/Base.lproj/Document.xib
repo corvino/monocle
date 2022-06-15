@@ -32,6 +32,9 @@
                             <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                             <wkPreferences key="preferences"/>
                         </wkWebViewConfiguration>
+                        <connections>
+                            <outlet property="navigationDelegate" destination="-2" id="viY-Je-oqE"/>
+                        </connections>
                     </wkWebView>
                 </subviews>
                 <constraints>

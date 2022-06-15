@@ -8,7 +8,7 @@ extension URL {
     }
 }
 
-class Document: NSDocument {
+class Document: NSDocument, WKNavigationDelegate {
 
     var watcher: Watcher?
 
@@ -21,6 +21,7 @@ class Document: NSDocument {
             webView.loadHTMLString(html, baseURL: URL(fileURLWithPath: "/"))
         }
     }
+    var webScrollY: Double = 0
 
     var html: String = "" {
         didSet {
@@ -40,8 +41,12 @@ class Document: NSDocument {
         return NSNib.Name("Document")
     }
 
-    @IBAction func reloadWebContent(_ sender: Any) {
+    @IBAction func reloadWebContent(_ sender: Any) async {
         if let url = fileURL {
+            if let y = try? await webView.evaluate(javascript: "window.scrollY") as? Double {
+                // Stash the scroll offset for rescrolling after reload.
+                webScrollY = y
+            }
             html = docToHTML(from: url)
         }
     }
@@ -86,18 +91,44 @@ class Document: NSDocument {
             watcher = Watcher(path: path) { [weak self] in
                 DispatchQueue.main.async {
                     guard let self = self else { return }
-                    self.html = self.docToHTML(from: url)
+                    Task { await self.reloadWebContent(self) }
                 }
             }
         }
     }
 
-
-
     @IBAction func showPageSource(_ sender: Any) {
         sourceWindow.title = "\(fileURL?.filePath ?? "") HTML Source"
         sourceTextView.string = html
         sourceWindow.setIsVisible(true)
+    }
+
+    // MARK: WKNavigationDelegate
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+
+        DispatchQueue.main.async {
+            Task {
+                // Scroll back to previous offset.
+                _ = try? await webView.evaluate(javascript: "window.scroll(0, \(self.webScrollY))")
+                self.webScrollY = 0
+            }
+        }
+    }
+}
+
+extension WKWebView {
+    func evaluate(javascript: String) async throws -> Any? {
+        try await withCheckedThrowingContinuation({ continuation in
+            evaluateJavaScript(javascript) { result, error in
+
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else {
+                    continuation.resume(returning: result)
+                }
+            }
+        })
     }
 }
 
