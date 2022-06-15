@@ -1,0 +1,15 @@
+.org-keyword {
+    color: #a020f0;
+}
+
+.org-function-name {
+    color: #0000ff;
+}
+
+.org-variable-name {
+    color: #a0522d;
+}
+
+.org-string {
+    color: #8b2252;
+}

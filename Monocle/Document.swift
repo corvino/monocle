@@ -12,10 +12,13 @@ class Document: NSDocument {
 
     var watcher: Watcher?
 
+    @IBOutlet var sourceWindow: NSWindow!
+    @IBOutlet var sourceTextView: NSTextView!
+
     @IBOutlet weak var webView: WKWebView! {
         didSet {
             webView.configuration.preferences.setValue(true, forKey: "developerExtrasEnabled")
-            webView.loadHTMLString(html, baseURL: nil)
+            webView.loadHTMLString(html, baseURL: URL(fileURLWithPath: "/"))
         }
     }
 
@@ -51,9 +54,12 @@ class Document: NSDocument {
         task.standardError = pipe
 
         let input = url.filePath!
-        let elFile = Bundle.main.bundlePath + "/Contents/Resources/org-html.el"
-         task.arguments = [input, "-l", elFile, "--batch", "--eval", "(org-to-html)"]
-         task.executableURL = URL(fileURLWithPath: "/usr/local/bin/emacs")
+        let resources = Bundle.main.bundlePath + "/Contents/Resources"
+        let elFile = resources + "/org-html.el"
+
+        let resourcesURL = Bundle.main.bundleURL.absoluteString + "/Contents/Resources"
+        task.arguments = [input, "-l", elFile, "--batch", "--eval", "(org-to-html \"\(resourcesURL)\")"]
+        task.executableURL = URL(fileURLWithPath: "/usr/local/bin/emacs")
 
         task.standardInput = nil
         do {
@@ -64,7 +70,14 @@ class Document: NSDocument {
         }
 
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        return String(data: data, encoding: .utf8)!
+        let output = String(data: data, encoding: .utf8)!
+        let preamble = "<!-- org-html-export-as-html --!>\n"
+
+        if let preambleRange = output.range(of: preamble) {
+            return String(output[preambleRange.upperBound...])
+        } else {
+            return output
+        }
     }
 
     override func read(from url: URL, ofType typeName: String) throws {
@@ -77,6 +90,14 @@ class Document: NSDocument {
                 }
             }
         }
+    }
+
+
+
+    @IBAction func showPageSource(_ sender: Any) {
+        sourceWindow.title = "\(fileURL?.filePath ?? "") HTML Source"
+        sourceTextView.string = html
+        sourceWindow.setIsVisible(true)
     }
 }
 
