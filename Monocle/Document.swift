@@ -42,13 +42,15 @@ class Document: NSDocument, WKNavigationDelegate {
         return NSNib.Name("Document")
     }
 
-    @IBAction func reloadWebContent(_ sender: Any) async {
-        if let url = fileURL {
-            if let y = try? await webView.evaluate(javascript: "window.scrollY") as? Double {
-                // Stash the scroll offset for rescrolling after reload.
-                webScrollY = y
+    @IBAction func reloadWebContent(_ sender: Any) {
+        Task { @MainActor in
+            if let url = fileURL {
+                if let y = try? await webView.evaluate(javascript: "window.scrollY") as? Double {
+                    // Stash the scroll offset for rescrolling after reload.
+                    webScrollY = y
+                }
+                html = docToHTML(from: url)
             }
-            html = docToHTML(from: url)
         }
     }
 
@@ -79,11 +81,17 @@ class Document: NSDocument, WKNavigationDelegate {
         let output = String(data: data, encoding: .utf8)!
         let preamble = "<!-- org-html-export-as-html --!>\n"
 
-        if let preambleRange = output.range(of: preamble) {
-            return String(output[preambleRange.upperBound...])
-        } else {
-            return output
-        }
+        let html = {
+            if let preambleRange = output.range(of: preamble) {
+                return String(output[preambleRange.upperBound...])
+            } else {
+                return output
+            }
+        }()
+
+        writeDebugOutput(from: url, html: html)
+
+        return html
     }
 
     override func read(from url: URL, ofType typeName: String) throws {
@@ -92,7 +100,7 @@ class Document: NSDocument, WKNavigationDelegate {
             watcher = Watcher(path: path) { [weak self] in
                 DispatchQueue.main.async {
                     guard let self = self else { return }
-                    Task { await self.reloadWebContent(self) }
+                    self.reloadWebContent(self)
                 }
             }
         }
@@ -116,39 +124,27 @@ class Document: NSDocument, WKNavigationDelegate {
             }
         }
     }
-}
 
-extension WKWebView {
-    func evaluate(javascript: String) async throws -> Any? {
-        try await withCheckedThrowingContinuation({ continuation in
-            evaluateJavaScript(javascript) { result, error in
+    private func writeDebugOutput(from: URL, html: String) {
+        guard let debugDir = FileManager.default.debugDirectory else { return }
 
-                if let error = error {
-                    continuation.resume(throwing: error)
-                } else {
-                    continuation.resume(returning: result)
-                }
-            }
-        })
-    }
-}
-
-class Watcher {
-    private let eventSource: DispatchSourceFileSystemObject
-
-    init?(path: String, handler: @escaping () -> Void) {
-        guard FileManager.default.fileExists(atPath: path) else { return nil }
-
-        let desc = open(path, O_EVTONLY)
-        guard -1 != desc else { return nil }
-
-        eventSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: desc, eventMask: .write)
-        eventSource.setEventHandler(handler: handler)
-
-        eventSource.setCancelHandler {
-            close(desc)
+        do {
+            try FileManager.default.createDirectory(at: debugDir, withIntermediateDirectories: true)
+        } catch {
+            Swift.print("Error creating debug directory: \(error)")
+            return
         }
 
-        eventSource.resume()
+        // Ensure output extension is .html
+        let inputFilename = from.lastPathComponent
+        let basename = inputFilename.hasSuffix(".org") ? String(inputFilename.dropLast(4)) : inputFilename
+        let outputFilename = basename + ".html"
+        let outputPath = debugDir.appendingPathComponent(String(outputFilename))
+
+        do {
+            try html.write(to: outputPath, atomically: true, encoding: String.Encoding.utf8)
+        } catch {
+            Swift.print("Error writing debug output: \(error)")
+        }
     }
 }

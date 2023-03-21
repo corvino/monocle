@@ -14,6 +14,8 @@
 		279034B928399C04006B9B35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 279034B828399C04006B9B35 /* Assets.xcassets */; };
 		279034BC28399C04006B9B35 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 279034BA28399C04006B9B35 /* MainMenu.xib */; };
 		279034C7283C2CFC006B9B35 /* org-html.el in Resources */ = {isa = PBXBuildFile; fileRef = 279034C6283C2CFC006B9B35 /* org-html.el */; };
+		27C69E0329CA1F6F00FD31F3 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C69E0229CA1F6F00FD31F3 /* Util.swift */; };
+		27C69E0529CA40F800FD31F3 /* Watcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C69E0429CA40F800FD31F3 /* Watcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		279034BD28399C04006B9B35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		279034BE28399C04006B9B35 /* Monocle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Monocle.entitlements; sourceTree = "<group>"; };
 		279034C6283C2CFC006B9B35 /* org-html.el */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "org-html.el"; sourceTree = "<group>"; };
+		27C69E0229CA1F6F00FD31F3 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		27C69E0429CA40F800FD31F3 /* Watcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 			children = (
 				279034B128399C03006B9B35 /* AppDelegate.swift */,
 				279034B328399C03006B9B35 /* Document.swift */,
+				27C69E0229CA1F6F00FD31F3 /* Util.swift */,
+				27C69E0429CA40F800FD31F3 /* Watcher.swift */,
 				279034B528399C03006B9B35 /* Document.xib */,
 				279034B828399C04006B9B35 /* Assets.xcassets */,
 				279034BA28399C04006B9B35 /* MainMenu.xib */,
@@ -146,6 +152,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				279034B428399C03006B9B35 /* Document.swift in Sources */,
+				27C69E0329CA1F6F00FD31F3 /* Util.swift in Sources */,
+				27C69E0529CA40F800FD31F3 /* Watcher.swift in Sources */,
 				279034B228399C03006B9B35 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
