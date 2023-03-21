@@ -1,0 +1,7 @@
+* Monocle
+
+An org-mode viewer application.
+
+** Example docuemnt
+
+[[docs/example.org][example.org]]
