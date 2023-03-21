@@ -15,10 +15,11 @@ class Document: NSDocument, WKNavigationDelegate {
     @IBOutlet var sourceWindow: NSWindow!
     @IBOutlet var sourceTextView: NSTextView!
 
+    let webBaseURL = URL(fileURLWithPath: "/")
     @IBOutlet weak var webView: WKWebView! {
         didSet {
             webView.configuration.preferences.setValue(true, forKey: "developerExtrasEnabled")
-            webView.loadHTMLString(html, baseURL: URL(fileURLWithPath: "/"))
+            webView.loadHTMLString(html, baseURL: webBaseURL)
         }
     }
     var webScrollY: Double = 0
@@ -26,7 +27,7 @@ class Document: NSDocument, WKNavigationDelegate {
     var html: String = "" {
         didSet {
             if let webView = webView {
-                webView.loadHTMLString(html, baseURL: nil)
+                webView.loadHTMLString(html, baseURL: webBaseURL)
             }
         }
     }
@@ -62,7 +63,7 @@ class Document: NSDocument, WKNavigationDelegate {
         let resources = Bundle.main.bundlePath + "/Contents/Resources"
         let elFile = resources + "/org-html.el"
 
-        let resourcesURL = Bundle.main.bundleURL.absoluteString + "/Contents/Resources"
+        let resourcesURL = Bundle.main.bundleURL.absoluteString + "Contents/Resources"
         task.arguments = [input, "-l", elFile, "--batch", "--eval", "(org-to-html \"\(resourcesURL)\")"]
         task.executableURL = URL(fileURLWithPath: "/usr/local/bin/emacs")
 
